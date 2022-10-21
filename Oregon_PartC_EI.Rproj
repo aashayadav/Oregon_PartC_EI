@@ -13,3 +13,4 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 BuildType: Website
+WebsitePath: C:/Users/asha_/Dropbox (Personal)/Research_projects/Oregon_PartC_EI
