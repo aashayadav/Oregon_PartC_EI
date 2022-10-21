@@ -1,5 +1,5 @@
 ---
-title: "Part C Eligibility Based on Medical Conditions in Oregon"
+title: "Part C EI Eligibility for Diagnosed Medical Conditions in Oregon"
 output: 
   flexdashboard::flex_dashboard:
     theme: sandstone
