@@ -314,14 +314,15 @@ data%>%
                               "aware_1_both" = "Q1: Are you aware of the medical conditions for children that have a high probability of significant developmental delay listed on Oregon State Plan Policy guidance?",
                               "aware_2_both" = "Q2: Are you aware that there are medical conditions for children that may qualify for EI eligibility evaluation and services that are not listed on Oregon State Plan Policy guidance?",
                               "aware_3_both" = "Q3: Are you aware that there are medical conditions for which minimum criteria need to be met to be eligible for EI services and a child’s disability does not need to be presently adversely affecting the child’s development?",
-                              "aware_4_both" = "Q4: Are you aware of the medical documents and reports that contribute to the written documentation of eligibility for EI services based on the medical condition?"
-                              )) %>%
+                              "aware_4_both" = "Q4: Are you aware of the medical documents and reports that contribute to the written documentation of eligibility for EI services based on the medical condition?")) %>%
   rename("N" = "n") %>%
   kableExtra::kable() %>%
   kable_styling(full_width = TRUE) %>%
   column_spec(1, width = "20cm", background = "#F0FFFF" )
 
+
 ```
+
 ### Analysis: Fisher's exact test
 
 ```{r}
@@ -513,14 +514,14 @@ plot_aware_byprofession <- ggplot(data_pos,
        aes(x = percent, y = fct_reorder(aware, percent), fill = response)) +
   geom_bar(aes(fill = response), stat = "identity", position = "identity", width = 0.6) +
   facet_wrap(~position) +
-  geom_vline(xintercept = 0, color = "#A0A0A0", linetype = "dashed") + #"red") +
-  #colorblindr::scale_fill_OkabeIto(name = "response") +
+  geom_vline(xintercept = 0, color = "red", linetype = "dashed") +
+  colorblindr::scale_fill_OkabeIto(name = "response") +
   scale_x_continuous(breaks = pretty(data_pos$percent),
                      labels = paste0(abs(pretty(data_pos$percent)), "%")) +
   geom_text(aes(x = percent/2, 
                 y = aware, 
                 label = paste0(abs(data_pos$percent), "%")), 
-            color = "black", #"red", 
+            color = "red", #"red", 
             size = 4) +
   #theme_xaringan() +
   theme_minimal() +
@@ -534,16 +535,16 @@ plot_aware_byprofession <- ggplot(data_pos,
         legend.direction = "horizontal",
         plot.title.position = "plot",
         axis.text=element_text(size=12, color = "black"),
-        plot.title = element_text(color= "black", #"red", 
+        plot.title = element_text(color= "red", #"red", 
                                   size=12, 
                                   hjust = 0.5),
         legend.text = element_text(size = 12),
         strip.background = element_blank(),
-        strip.text = element_text(size = 12, #face="bold",
-                                  color = "black", #"#d55e00", 
+        strip.text = element_text(size = 12, face = "bold", #face="bold",
+                                  color = "#d55e00", #"#d55e00", 
                                   hjust = 0.5)) +  #+
-  guides(fill = guide_legend(reverse = TRUE)) +
-  scale_fill_manual(values = c("#B8B8B8", "#D0D0D0"))
+  guides(fill = guide_legend(reverse = TRUE)) 
+ # scale_fill_manual(values = c("#B8B8B8", "#D0D0D0"))
   
 
 plot_aware_byprofession
@@ -952,7 +953,7 @@ practice_data <- practice_data %>%
 In_practice_all<-ggplot(practice_data,
        aes(x = percent, y = fct_reorder(practice, percent), fill = response)) +
   geom_bar(aes(fill = response), stat = "identity", position = "identity", width = 0.6) +
-  geom_vline(xintercept = 0, color = "#A0A0A0", linetype = "dashed") + #"red", linetype = "dashed") +
+  geom_vline(xintercept = 0, color = "red", linetype = "dashed") + #"red", linetype = "dashed") +
   colorblindr::scale_fill_OkabeIto(name = "response") +
   scale_x_continuous(breaks = pretty(practice_data$percent), 
                      labels = paste0(abs(pretty(practice_data$percent)), "%")) +
@@ -972,8 +973,8 @@ In_practice_all<-ggplot(practice_data,
          axis.text=element_text(size=12, color = "black"),
          plot.title = element_text(color= "black",size=12, hjust = 0.5), # "red", size=12, hjust = 0.5),
          legend.text = element_text(size = 12)) +
-  guides(fill = guide_legend(reverse = FALSE)) +
-  scale_fill_manual(values = c("#D0D0D0", "#B8B8B8"))
+  guides(fill = guide_legend(reverse = FALSE)) 
+  #scale_fill_manual(values = c("#D0D0D0", "#B8B8B8"))
 
   In_practice_all
   
@@ -1179,7 +1180,8 @@ ggplot(practice_data_job,
          plot.title = element_text(color="red", size=15, hjust = 0.5),
          legend.text = element_text(size = 15),
          strip.background = element_blank(),
-         strip.text = element_text(face="bold", size = 15, color = "#d55e00", hjust = 0.5)) +
+         strip.text = element_text(face="bold", size = 15, color = "#d55e00", 
+                                   hjust = 0.5)) +
   guides(fill = guide_legend(reverse = FALSE))
 
 
@@ -1626,7 +1628,7 @@ covid_only_ei <- covid_only_ei %>%
 covid_eiecse <- ggplot(covid_only_ei,
        aes(x = percent, y = fct_reorder(during_pandemic, percent), fill = response)) +
   geom_bar(aes(fill = response), stat = "identity", position = "identity", width = 0.6) +
-  geom_vline(xintercept = 0, color = "#A0A0A0", linetype = "dashed") +
+  geom_vline(xintercept = 0, color = "red", linetype = "dashed") +
   colorblindr::scale_fill_OkabeIto(name = "response") +
   scale_x_continuous(breaks = pretty(covid_only_ei$percent),
                      labels = paste0(abs(pretty(covid_only_ei$percent)), "%")) +
@@ -1648,8 +1650,8 @@ covid_eiecse <- ggplot(covid_only_ei,
          plot.title.position = "plot",
          axis.text=element_text(size=12, color = "black"),
          plot.title = element_text(color="black", size=12, hjust = 0.5),
-         legend.text = element_text(size = 12)) +
-  scale_fill_manual(values = c("#D0D0D0", "#B8B8B8"))
+         legend.text = element_text(size = 12)) 
+  #scale_fill_manual(values = c("#D0D0D0", "#B8B8B8"))
         
 covid_eiecse
 
